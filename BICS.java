@@ -18,6 +18,18 @@ public class BICS {
 
             int i = sl + 1;
             if ((sr - sl) >= 100){
+                /* THINGS TO CONSIDER :
+                 * The Paper's implementation seems to have logic flaw. The for loop below 
+                 * theoritically should bound the sort trip to happens sqrt(N) times.
+                 * but the code only does it for half of it, that is roughly the first 0 until sqrt(N) sort trip.
+                 * what we actually want is perhaps current SL until SL + sqrt(N).
+                 * this guarantees us that every sort trip is done efficiently
+                 * therefore, the code should be
+                 * 
+                 * for (;i < sl+Math.sqrt(sr - sl); i++)
+                 * 
+                 * already tested on random dataset, it improves running time around 10 times faster.
+                 */
                 for (;i < Math.sqrt(sr - sl); i++){
                     if (array.get(sr) < array.get(i)) swap(array, sr, i);
                     else if(array.get(sl) > array.get(i)) swap(array, sl, i);

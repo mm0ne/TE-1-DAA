@@ -30,7 +30,7 @@ public class BICS {
                  * 
                  * already tested on random dataset, it improves running time around 10 times faster.
                  */
-                for (;i < Math.sqrt(sr - sl); i++){
+                for (;i < sl+Math.sqrt(sr - sl); i++){
                     if (array.get(sr) < array.get(i)) swap(array, sr, i);
                     else if(array.get(sl) > array.get(i)) swap(array, sl, i);
                 }
